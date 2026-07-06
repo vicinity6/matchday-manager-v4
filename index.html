@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matchday Manager V4 - Stage 1</title>
+  <meta name="theme-color" content="#22c55e" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <div class="logo">⚽</div>
+      <h1>Matchday Manager V4</h1>
+      <p class="muted">Stage 1: Login + cloud-synced players</p>
+
+      <label>Email</label>
+      <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+
+      <label>Password</label>
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+
+      <div class="button-row">
+        <button class="primary" id="loginBtn">Log in</button>
+        <button id="signupBtn">Create account</button>
+      </div>
+
+      <p id="authMessage" class="message"></p>
+    </div>
+  </div>
+
+  <div id="appScreen" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo small-logo" id="logoBox">⚽</div>
+        <div>
+          <h2 id="appTitle">Matchday Manager V4</h2>
+          <p id="sessionInfo" class="muted">Cloud synced</p>
+        </div>
+      </div>
+
+      <button class="nav active" data-page="dashboard">🏠 Dashboard</button>
+      <button class="nav" data-page="players">👥 Players</button>
+      <button class="nav" data-page="settings">⚙️ Settings</button>
+      <button class="nav danger-outline" id="logoutBtn">🚪 Log out</button>
+    </aside>
+
+    <main class="main">
+      <section id="dashboard" class="page active">
+        <h1>🏠 Dashboard</h1>
+        <div class="grid">
+          <div class="card">
+            <h3>Cloud Status</h3>
+            <p id="cloudStatus" class="big">Connected</p>
+            <p class="muted">Players and settings save to Supabase.</p>
+          </div>
+          <div class="card">
+            <h3>Players</h3>
+            <p id="playerCount" class="big">0</p>
+            <p class="muted">Synced player list.</p>
+          </div>
+          <div class="card">
+            <h3>Logged in as</h3>
+            <p id="userEmail" class="wrap-text"></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>What works in Stage 1</h2>
+          <ul>
+            <li>Login / create account</li>
+            <li>Cloud-synced players</li>
+            <li>Add / delete players</li>
+            <li>Change ratings</li>
+            <li>Activate / deactivate players</li>
+            <li>Cloud-synced branding settings</li>
+          </ul>
+          <p class="muted">Next stages add matchday generation, payments, kitty, history and stats.</p>
+        </div>
+      </section>
+
+      <section id="players" class="page">
+        <h1>👥 Players</h1>
+
+        <div class="card">
+          <h2>Add player</h2>
+          <div class="row">
+            <input id="newPlayerName" placeholder="Player name" />
+            <select id="newPlayerRating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="primary" id="addPlayerBtn">Add</button>
+          </div>
+          <input id="searchPlayers" placeholder="Search players..." />
+        </div>
+
+        <div id="playersGrid" class="players-grid"></div>
+      </section>
+
+      <section id="settings" class="page">
+        <h1>⚙️ Settings</h1>
+
+        <div class="grid">
+          <div class="card">
+            <h2>Branding</h2>
+            <label>App title</label>
+            <input id="settingTitle" />
+
+            <label>Logo emoji/text</label>
+            <input id="settingLogo" />
+
+            <button class="primary" id="saveSettingsBtn">Save settings</button>
+          </div>
+
+          <div class="card">
+            <h2>Theme</h2>
+            <button id="toggleThemeBtn">Toggle Dark/Light</button>
+          </div>
+
+          <div class="card">
+            <h2>Supabase Test</h2>
+            <button id="reloadBtn">Reload cloud data</button>
+            <p id="settingsMessage" class="message"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav active" data-page="dashboard">🏠<span>Home</span></button>
+      <button class="nav" data-page="players">👥<span>Players</span></button>
+      <button class="nav" data-page="settings">⚙️<span>Settings</span></button>
+    </nav>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
