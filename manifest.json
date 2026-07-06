@@ -1,0 +1,9 @@
+{
+  "name": "Matchday Manager V4",
+  "short_name": "Matchday",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#22c55e",
+  "icons": []
+}
